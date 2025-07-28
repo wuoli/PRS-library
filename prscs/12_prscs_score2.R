@@ -3,7 +3,6 @@ library(ROCR)
 
 args <- commandArgs(trailingOnly = TRUE)
 pheno <- args[1]
-#binary <- args[2]
 phenotype_file <- args[2]
 score_dir <- args[3]
 
@@ -32,10 +31,6 @@ phenotype<-fread(phenotype_file)
 # Ensure column names match before merging (assuming first two columns are fid and iid)
 setnames(final_output, c("FID", "IID", "ALLELE_CT", "NAMED_ALLELE_DOSAGE_SUM", "PRS"))
 setnames(phenotype, c("FID", "IID", "phenotype"))
-
-# if(as.logical(binary)==TRUE){
-#   phenotype$phenotype <- phenotype$phenotype-1
-# }
 
 # Merge by FID and IID
 merged_data <- merge(final_output, phenotype, by = c("FID", "IID"))

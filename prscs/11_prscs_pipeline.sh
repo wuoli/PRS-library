@@ -2,7 +2,7 @@
 #SBATCH --job-name=prscs
 #SBATCH --output=/common/lir2lab/Olivia/Model-Evaluation/consortium/result/log/prscs/pipeline/11_prscs_pipeline_%A_%a.out # Standard output log
 #SBATCH --error=/common/lir2lab/Olivia/Model-Evaluation/consortium/result/log/prscs/pipeline/11_prscs_pipeline_%A_%a.err  # Standard error log
-#SBATCH --array=111-132
+#SBATCH --array=1-176
 #SBATCH --cpus-per-task=20  # Number of cores per task
 #SBATCH --time=1:00:00      # Time limit
 #SBATCH --mem=64G           # Memory per job
@@ -29,5 +29,7 @@ out_dir="/common/lir2lab/Olivia/Model-Evaluation/consortium/result/prscs/${pheno
 sumstats_file="/common/lir2lab/Olivia/Model-Evaluation/consortium/result/sumstats_prscs/${pheno}/${pheno}_chr${chr}_gwas"
 genotype="/common/lir2lab/Wanling/DATA/UKBB/Genotype/chr${chr}"
 n_gwas=247173
+ld_panel="/common/lir2lab/Olivia/Model-Evaluation/ldpanel/ldblk_1kg_eur"
+prscs_dir="/common/lir2lab/PRScs/"
 
-Rscript /common/lir2lab/Olivia/Model-Evaluation/code/prscs/prscs1_1.R $out_dir $sumstats_file $genotype $n_gwas $chr
+Rscript /common/lir2lab/Olivia/Model-Evaluation/code/prscs/11_prscs_pipeline.R $out_dir $sumstats_file $genotype $n_gwas $chr $ld_panel $prscs_dir
